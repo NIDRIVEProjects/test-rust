@@ -12,7 +12,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - run: rustup show
+    - run: cargo --version
+    - run: rustc --version
     - name: Build
-      run: cargo build --verbose
+      run:  cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
+
+# name: Test Rust project
+# on: [push]
+# jobs:
+#   test:
+#     runs-on: ${{ matrix.os }}
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest, windows-latest, macOS-latest]
+#         rust: [stable, nightly]
+
+#     steps:
+#     - uses: hecrj/setup-rust-action@v2
+#       with:
+#         rust-version: ${{ matrix.rust }}
+#     - uses: actions/checkout@master
+#     - name: Run tests
+#       run: cargo test --verbose
